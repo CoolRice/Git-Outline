@@ -1,0 +1,62 @@
+.git-outline-container {
+  position: absolute;
+  display: none;
+  right: 0;
+  top: 0;
+  padding: 6px;
+  line-height: 16px;
+  border-bottom-left-radius: 6px;
+  z-index: 1000000002 !important;
+  background: #dbdfe2;
+  max-height: 100vh;
+  max-width: 230px;
+  overflow: auto;
+
+  .start-btn {
+    display: inline-block;
+    background: #dbdfe2;
+    cursor: pointer;
+    padding-left: 16px;
+
+  }
+  .loader {
+    display: inline-block;
+    border: 1px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 1px solid #3498db;
+    width: 12px;
+    height: 12px;
+    margin-left: 3px;
+    animation: spin 0.6s linear infinite;
+  }
+  .line {
+    white-space: nowrap;
+  }
+  .head {
+    text-align: center;
+    background-color: #a7a9ad;
+  }
+  .close-btn {
+    content: "x";
+    float: right;
+    padding-right: 5px;
+    cursor: pointer;
+  }
+
+  .triangle-down{
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: -17px;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top: 8px solid green;
+  }
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
