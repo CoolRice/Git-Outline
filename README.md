@@ -1,3 +1,6 @@
+<h1 align="center">
+  <img src="https://github.com/CoolRice/Git-Outline/raw/main/.github/icon.png"/>
+</h1>
 <h1 align="center">Git-Outline</h1>
 <p align="center">A Web Extension for Better GitHub Page Outline View</p>
 <div align="center">
