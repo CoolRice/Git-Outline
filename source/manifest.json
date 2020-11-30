@@ -22,9 +22,6 @@
   "content_security_policy": "script-src 'self'; object-src 'self'",
 
   "__chrome|firefox__author": "coolrice",
-  "__opera__developer": {
-    "name": "coolrice"
-  },
 
   "__firefox__applications": {
     "gecko": {
@@ -33,7 +30,6 @@
   },
 
   "__chrome__minimum_chrome_version": "49",
-  "__opera__minimum_opera_version": "36",
 
   "browser_action": {
     "default_icon": {
