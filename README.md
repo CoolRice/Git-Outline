@@ -10,7 +10,7 @@
 </div>
 <hr />
 
-## 🚀 Quick Start
+## 🚀 Development
 
 Ensure you have
 
@@ -25,16 +25,6 @@ Then run the following:
 - `yarn run build:chrome` to build chrome extension
 - `yarn run build:firefox` to build firefox addon
 - `yarn run build` builds and packs extensions all at once to extension/ directory
-
-### Development
-
-- `yarn install` to install dependencies.
-- To watch file changes in development
-
-  - Chrome
-    - `yarn run dev:chrome`
-  - Firefox
-    - `yarn run dev:firefox`
 
 - **Load extension in browser**
 
