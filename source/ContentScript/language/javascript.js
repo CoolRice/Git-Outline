@@ -91,12 +91,20 @@ const dealTypeAlias = (item) => {
     type: 'type',
   };
 };
+const dealTSInterfaceDeclaration = (item) => {
+  return {
+    name: item.id.name,
+    line: item.loc.start.line,
+    type: 'interface',
+  };
+};
 
+//https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md
 const walk = (ast) => {
   let outlines = [];
   traverse(ast, {
     Program(path) {
-      // console.log(path.node.body)
+      console.log(path.node.body[0])
       path.node.body.forEach((item) => {
         if (item) {
           let outline;
@@ -124,6 +132,9 @@ const walk = (ast) => {
           }
           if (item.type === 'TypeAlias') {
             outlines.push(dealTypeAlias(item));
+          }
+          if (item.type === 'TSInterfaceDeclaration') {
+            outlines.push(dealTSInterfaceDeclaration(item));
           }
         }
       });
