@@ -11,6 +11,11 @@
   max-height: 100vh;
   max-width: 230px;
   overflow: auto;
+  .empty {
+    width: 120px;
+    text-align: center;
+    margin-top: 5px;
+  }
 
   .start-btn {
     display: inline-block;

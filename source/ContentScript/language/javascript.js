@@ -77,6 +77,9 @@ const dealExportDefaultDeclaration = (item) => {
     if (item.declaration.type === 'ClassDeclaration') {
       return dealClassDecalaration(item.declaration);
     }
+    if (item.declaration.type === 'TSTypeAliasDeclaration') {
+      return dealTSTypeAliasDeclaration(item.declaration);
+    }
   }
 };
 
@@ -98,49 +101,58 @@ const dealTSInterfaceDeclaration = (item) => {
     type: 'interface',
   };
 };
+const dealTSTypeAliasDeclaration = (item) => {
+  return {
+    name: item.id.name,
+    line: item.loc.start.line,
+    type: 'type',
+  };
+};
 
 //https://github.com/babel/babel/blob/main/packages/babel-parser/ast/spec.md
 const walk = (ast) => {
   let outlines = [];
   traverse(ast, {
     Program(path) {
-      console.log(path.node.body[0])
+      console.log(path.node.body)
       path.node.body.forEach((item) => {
         if (item) {
           let outline;
+          let currentOutlines = [];
           if (item.type === 'VariableDeclaration') {
-            outlines = outlines.concat(dealVariableDeclaration(item));
+            currentOutlines.push(dealVariableDeclaration(item));
           }
           if (item.type === 'FunctionDeclaration') {
-            outlines.push(dealFunctionDeclaration(item));
+            currentOutlines.push(dealFunctionDeclaration(item));
           }
           if (item.type === 'ClassDeclaration') {
-            outlines.push(dealClassDecalaration(item));
+            currentOutlines.push(dealClassDecalaration(item));
           }
           if (item.type === 'ExportDefaultDeclaration') {
-            outlines.push(dealExportDefaultDeclaration(item));
+            currentOutlines.push(dealExportDefaultDeclaration(item));
           }
           if (item.type === 'ExportNamedDeclaration' && item.declaration) {
-            outline = dealExportNamedDeclaration(item);
-            if (outline) {
-              if (outline instanceof Array) {
-                outlines = outlines.concat(outline);
-              } else {
-                outlines.push(outline);
-              }
-            }
+            currentOutlines.push(dealExportNamedDeclaration(item));
           }
           if (item.type === 'TypeAlias') {
-            outlines.push(dealTypeAlias(item));
+            currentOutlines.push(dealTypeAlias(item));
           }
           if (item.type === 'TSInterfaceDeclaration') {
-            outlines.push(dealTSInterfaceDeclaration(item));
+            currentOutlines.push(dealTSInterfaceDeclaration(item));
           }
+          if (currentOutlines) {
+            currentOutlines.flat(Infinity).forEach((item) => {
+              if (item?.name && item?.line) {
+                outlines.push(item);
+              }
+            });
+          }
+
         }
       });
     },
   });
-
+  // console.log(outlines)
   return outlines;
 };
 
