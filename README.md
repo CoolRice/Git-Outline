@@ -4,8 +4,6 @@
 </h1>
 <p align="center">A Web Extension for Better GitHub Page Outline View</p>
 <div align="center">
-  <img src="https://github.com/CoolRice/Git-Outline/raw/main/.github/preview.png"/>
-  <br>
   <img src="https://github.com/CoolRice/Git-Outline/raw/main/.github/preview.gif"/>
 </div>
 <hr />
