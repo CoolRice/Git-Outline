@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import StartButton from './Button';
 import Outline from './Outline';
 
-import { startParsing } from '../utils';
+import { startParsing, getScrollBarWidth } from '../utils';
 
 export default function Container(props) {
   const containerEl = useRef(null);
@@ -30,8 +30,8 @@ export default function Container(props) {
         // out of viewport
         position = 'fixed';
         display = 'block';
-        const { right: repositoryContentRight } = document.querySelector('.repository-content').getBoundingClientRect();
-        right = `${window.innerWidth - repositoryContentRight + 1}px`;
+        const { right: blobWrapperRight } = blobWrapper.getBoundingClientRect();
+        right = `${window.innerWidth - blobWrapperRight - getScrollBarWidth()}px`;
       }
       Object.assign(containerEl.current.style, {position, display, right});
     };

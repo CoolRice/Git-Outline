@@ -6,11 +6,15 @@ import './styles.scss';
 function init() {
   const blobWrapper = document.querySelector('.blob-wrapper');
   if (blobWrapper) {
-    const outlineContainer = document.createElement('div');
+    let outlineContainer = document.querySelector('.git-outline');
+    if (outlineContainer) return;
+
+    outlineContainer = document.createElement('div');
     outlineContainer.className = 'git-outline';
     blobWrapper.prepend(outlineContainer);
 
     ReactDOM.render(<Container />, outlineContainer);
   }
 }
+
 init();
